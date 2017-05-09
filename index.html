@@ -37,11 +37,11 @@
 	      	varying vec3 vLightWeighting;
 
 	      	void main(void) {
-						vec4 mvPosition = uMVMatrix * vec4(aVertexPosition, 1.0);
+			vec4 mvPosition = uMVMatrix * vec4(aVertexPosition, 1.0);
 	        	gl_Position = uPMatrix * mvPosition;
 	        	vTextureCoord = aTextureCoord;
 
-						vec3 lightDirection = normalize(uLightingLocation - mvPosition.xyz);
+			vec3 lightDirection = normalize(uLightingLocation - mvPosition.xyz);
 
 	          	vec3 transformedNormal = uNMatrix * aVertexNormal;
 	          	float directionalLightWeighting = max(dot(transformedNormal, lightDirection), 0.0);
@@ -213,42 +213,42 @@
     		function handleKeys() {
 		        if (currentlyPressedKeys[37] || currentlyPressedKeys[65]) {
 		            // Left cursor key or A
-		            xRot = -2.0;
+				xRot = -2.0;
 
-								if(xPot<=24)
-								{
+				if(xPot<=24)
+				{
 			            xPot +=0.2;
-								}
+				}
 		        } else if (currentlyPressedKeys[39] || currentlyPressedKeys[68]) {
 		            // Right cursor key or D
-		            xRot = 2.0;
+				xRot = 2.0;
 
-								if(xPot>=-24)
-								{
+				if(xPot>=-24)
+				{
 			            xPot -= 0.2;
-								}
+				}
 		        } else {
-		            xRot = 0;
+		    		xRot = 0;
 		        }
 
 		        if (currentlyPressedKeys[38] || currentlyPressedKeys[87]) {
 		            // Up cursor key or W
-		            yRot = -2.0;
+		            	yRot = -2.0;
 
-								if(zPot<=-6.5)
-								{
+				if(zPot<=-6.5)
+				{
 			            zPot += 0.2;
-								}
+				}
 		        } else if (currentlyPressedKeys[40] || currentlyPressedKeys[83]) {
 		            // Down cursor key
-		            yRot = 2.0;
+		            	yRot = 2.0;
 
-								if(zPot>=-54.4)
-								{
+				if(zPot>=-54.4)
+				{
 			            zPot -=0.2;
-								}
+				}
 		        } else {
-		            yRot = 0;
+		            	yRot = 0;
 		        }
 
 		        var newRotationMatrix = mat4.create();
@@ -335,7 +335,7 @@
 		        moonVertexIndexBuffer.itemSize = 1;
 		        moonVertexIndexBuffer.numItems = indexData.length;
 
-			    cubeVertexPositionBuffer = gl.createBuffer();
+		   	cubeVertexPositionBuffer = gl.createBuffer();
 		        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
 		        vertices = [
 		            // Front face
@@ -478,7 +478,7 @@
 		            1.0, 1.0,
 		            0.0, 1.0,
 		            0.0, 0.0,
-								1.0, 0.0
+			    1.0, 0.0
 		        ];
 		        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords1), gl.STATIC_DRAW);
 		        playVertexTextureCoordBuffer.itemSize = 2;
@@ -501,26 +501,26 @@
 
 		    	mvPushMatrix();
 
-					mat4.translate(mvMatrix, [this.x, 0, this.z]);
+			mat4.translate(mvMatrix, [this.x, 0, this.z]);
 
-					gl.activeTexture(gl.TEXTURE0);
-					gl.bindTexture(gl.TEXTURE_2D, blockTexture);
-					gl.uniform1i(shaderProgram.samplerUniform, 0);
+			gl.activeTexture(gl.TEXTURE0);
+			gl.bindTexture(gl.TEXTURE_2D, blockTexture);
+			gl.uniform1i(shaderProgram.samplerUniform, 0);
 
-					mat4.rotate(mvMatrix, degToRad(rBlock), [0, 1, 0]);
+			mat4.rotate(mvMatrix, degToRad(rBlock), [0, 1, 0]);
 
-					gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
-					gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
+			gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-					gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexNormalBuffer);
-					gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, cubeVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexNormalBuffer);
+			gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, cubeVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-					gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexTextureCoordBuffer);
-					gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, cubeVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexTextureCoordBuffer);
+			gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, cubeVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-					gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
-					setMatrixUniforms();
-					gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
+			setMatrixUniforms();
+			gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
 		    	mvPopMatrix();
 		    }
@@ -532,13 +532,13 @@
 
 		    	for (var i=-numBlocks; i<=numBlocks; i++) {
 		    		blocks.push(new Block(i * (8.0),(-35) + (Math.abs(Math.abs(i)+20))));
-						blocks.push(new Block(i * (8.0),-((-35) + (Math.abs(Math.abs(i)+20)))));
+				blocks.push(new Block(i * (8.0),-((-35) + (Math.abs(Math.abs(i)+20)))));
 		    	}
 		    }
 
 		    var score = 0;
-				var currentX;
-				var currentZ;
+		    var currentX;
+		    var currentZ;
 
 		    function drawScene() {
 		        gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -546,28 +546,28 @@
 
 		        mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
-	            gl.uniform3f(
-	                shaderProgram.ambientColorUniform,
-	                parseFloat(0.3),
-	                parseFloat(0.3),
-	                parseFloat(0.3)
-	            );
-	            gl.uniform3f(shaderProgram.lightingLocationUniform,
-	                parseFloat(-10.0),
-	                parseFloat(0.0),
-	                parseFloat(0.0)
-	            );
+			    gl.uniform3f(
+				shaderProgram.ambientColorUniform,
+				parseFloat(0.3),
+				parseFloat(0.3),
+				parseFloat(0.3)
+			    );
+			    gl.uniform3f(shaderProgram.lightingLocationUniform,
+				parseFloat(-10.0),
+				parseFloat(0.0),
+				parseFloat(0.0)
+			    );
 
-	            gl.uniform3f(
-	                shaderProgram.lightingColorUniform,
-	                parseFloat(0.8),
-	                parseFloat(0.8),
-	                parseFloat(0.8)
-	            );
+			    gl.uniform3f(
+				shaderProgram.lightingColorUniform,
+				parseFloat(0.8),
+				parseFloat(0.8),
+				parseFloat(0.8)
+			    );
 
 		        mat4.identity(mvMatrix);
 
-						mat4.rotate(mvMatrix, degToRad(50), [1, 0, 0]);
+			mat4.rotate(mvMatrix, degToRad(50), [1, 0, 0]);
 
 		        mat4.translate(mvMatrix, [0, -30.0, 0]);
 
@@ -588,25 +588,25 @@
 		        setMatrixUniforms();
 		        gl.drawElements(gl.TRIANGLES, moonVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
-						mvPopMatrix();
+			mvPopMatrix();
 
-						mat4.translate(mvMatrix, [xPot, 0.0, zPot]);
+			mat4.translate(mvMatrix, [xPot, 0.0, zPot]);
 
-						for (var i in blocks) {
-						 blocks[i].draw();
+			for (var i in blocks) {
+			 blocks[i].draw();
 
-						 currentX = blocks[i].x*xPot;
-						 currentZ = blocks[i].z*(zPot+30);
+			 currentX = blocks[i].x*xPot;
+			 currentZ = blocks[i].z*(zPot+30);
 
-						 if((Math.abs(Math.abs(blocks[i].x)-Math.abs(xPot))<=1.5) && (Math.abs(Math.abs(blocks[i].z)-Math.abs(zPot+30))<=1.5) && currentX<=0 && currentZ<=0)
-							{
-								blocks.splice(i,1);
-								score++;
-							}
-					 }
-					 //lol what can I do now I'm hopeless...
+			 if((Math.abs(Math.abs(blocks[i].x)-Math.abs(xPot))<=1.5) && (Math.abs(Math.abs(blocks[i].z)-Math.abs(zPot+30))<=1.5) && currentX<=0 && currentZ<=0)
+				{
+					blocks.splice(i,1);
+					score++;
+				}
+		 	}
+		 	//lol what can I do now I'm hopeless...
 
-					  mvPushMatrix();
+		  	mvPushMatrix();
 		        gl.activeTexture(gl.TEXTURE0);
 		        gl.bindTexture(gl.TEXTURE_2D, bgTexture);
 		        gl.uniform1i(shaderProgram.samplerUniform, 0);
@@ -634,7 +634,7 @@
         		ctx.font = "20px Arial";
         		ctx.fillStyle = "#0095DD";
         		ctx.fillText("Score: "+score, 8, 20);
-    		}
+    		    }
 
 		    function tick() {
 		    	ctx.clearRect(0, 0, 500, 500);
