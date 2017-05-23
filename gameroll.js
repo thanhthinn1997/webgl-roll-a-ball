@@ -9,7 +9,7 @@ function initGL(canvas) {
   } catch (e) {
   }
   if (!gl) {
-    alert("You dumbass :D");
+    alert("Your browser isn't supported WebGL :D");
   }
 }
 
@@ -54,7 +54,7 @@ function initShaders() {
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-      alert("Could not initialise shaders");
+      alert("Could not initialise shaders :D");
   }
 
   gl.useProgram(shaderProgram);
@@ -579,8 +579,18 @@ function animate() {
 
 function drawScore() {
   ctx.font = "20px Arial";
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = "#FFFFFF";
   ctx.fillText("Score: "+score, 8, 20);
+
+  ctx.font = "40px Arial";
+  var gradient = ctx.createLinearGradient(0, 0, 500, 0);
+  gradient.addColorStop("0", "magenta");
+  gradient.addColorStop("0.5", "blue");
+  gradient.addColorStop("1.0", "red");
+  ctx.fillStyle = gradient;
+  if(score >= 10) {
+    ctx.fillText("You win !!", 300, 260);
+  }
 }
 
 function tick() {
